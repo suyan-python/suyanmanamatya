@@ -13,7 +13,6 @@ const Home = () =>
 {
     return (
         <div className="bg-dark text-white">
-            <Navbar />
             <Hero />
             <Values />
             <Skills />
@@ -22,7 +21,6 @@ const Home = () =>
             <Experience />
             <Projects />
             <Services /> */}
-            <Footer />
         </div>
     );
 };

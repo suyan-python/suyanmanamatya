@@ -1,202 +1,293 @@
-import React from 'react'
+import { motion } from "framer-motion";
+import
+{
+    ShieldCheck,
+    Rocket,
+    Layers3,
+    LineChart,
+    ArrowUpRight,
+} from "lucide-react";
 
 const Values = () =>
 {
-    return (
-        <section id="value" className="relative py-32 px-6 bg-[#09090b] overflow-hidden" >
+    const valueCards = [
+        {
+            id: "02",
+            icon: Rocket,
+            label: "Optimization",
+            title: "Performance & SEO Engineering",
+            description:
+                "Fast-loading systems optimized for responsiveness, search visibility, accessibility, and real-world performance across devices.",
+        },
+        {
+            id: "03",
+            icon: ShieldCheck,
+            label: "Infrastructure",
+            title: "Secure Digital Workflows",
+            description:
+                "Structured backend systems, payment integrations, authentication flows, and production-focused architecture built for reliability.",
+        },
+        {
+            id: "04",
+            icon: Layers3,
+            label: "Experience",
+            title: "Business-Focused Product Design",
+            description:
+                "Interfaces designed not only for aesthetics, but for trust, usability, engagement, and long-term customer experience.",
+        },
+    ];
 
-            {/* BACKGROUND GLOW */}
+    return (
+        <section
+            id="value"
+            className="relative py-32 px-6 bg-[#09090b] overflow-hidden"
+        >
+
+            {/* BACKGROUND GLOWS */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/10 blur-[140px] rounded-full" />
+
+            <motion.div
+                animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.05, 1],
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full"
+            />
 
             <div className="relative z-10 max-w-7xl mx-auto">
 
-                {/* SECTION HEADER */}
-                <div className="mb-20 text-center ">
+                {/* ================= HEADER ================= */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                    className="mb-24 text-center"
+                >
 
-                    <p className="text-primary uppercase tracking-[4px] text-sm font-semibold mb-4">
-                        What will i bring to table
+                    <p className="text-primary uppercase tracking-[5px] text-sm font-semibold mb-5">
+                        Value I Bring
                     </p>
 
-                    <h2 className="header text-4xl md:text-6xl font-bold leading-tight tracking-tight text-white">
-                        Building Systems That
+                    <h2 className="header text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight text-white max-w-5xl mx-auto">
+                        Building Reliable Digital Systems
                         <span className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent">
-                            {" "}Create Real Impact.
+                            {" "}That Deliver Real Business Impact.
                         </span>
                     </h2>
 
-                    <p className="text-zinc-400 text-lg leading-relaxed mt-6 max-w-3xl mx-auto">
-                        Beyond aesthetics, I focus on engineering reliable digital experiences
-                        that combine performance, scalability, modern design, and business-focused functionality.
+                    <p className="text-xs md:text-lg leading-relaxed mt-8 max-w-3xl mx-auto">
+
+                        <span
+                            className="
+        bg-gradient-to-r
+        from-zinc-100
+        via-green-400
+        to-emerald-200
+        bg-[length:250%_250%]
+        bg-clip-text
+        text-transparent
+        animate-gradient
+    "
+                        >
+                            Beyond visuals, I focus on creating scalable, production-ready systems
+                            engineered for performance, maintainability, trust, and long-term business growth.
+                        </span>
+
                     </p>
 
-                </div>
+                </motion.div>
 
-                {/* VALUE GRID */}
+                {/* ================= GRID ================= */}
                 <div className="grid lg:grid-cols-12 gap-6">
 
-                    {/* LARGE FEATURE CARD */}
-                    <div className="lg:col-span-7 group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-10">
+                    {/* ================= MAIN FEATURE ================= */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7 }}
+                        whileHover={{ y: -6 }}
+                        className="
+                            lg:col-span-7
+                            group relative overflow-hidden
+                            rounded-[34px]
+                            border border-white/10
+                            bg-white/[0.03]
+                            backdrop-blur-2xl
+                            p-10 md:p-12
+                        "
+                    >
 
-                        {/* Glow */}
-                        <div className="absolute -top-24 right-0 w-[300px] h-[300px] bg-primary/10 blur-[120px] rounded-full" />
+                        {/* animated glow */}
+                        <motion.div
+                            animate={{
+                                y: [0, -15, 0],
+                                opacity: [0.3, 0.5, 0.3],
+                            }}
+                            transition={{
+                                duration: 7,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            className="absolute -top-20 right-0 w-[320px] h-[320px] bg-primary/10 blur-[130px] rounded-full"
+                        />
 
-                        {/* Hover Layer */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                        {/* hover layer */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
-                        <div className="relative z-10 flex flex-col h-full justify-between">
+                        <div className="relative z-10 flex flex-col justify-between h-full">
 
+                            {/* TOP */}
                             <div>
 
-                                <div className="flex items-center gap-3 mb-8">
-                                    <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary text-xs md:text-xl font-bold">
-                                            01
-                                        </span>
-                                    </div>
+                                <div className="flex items-center gap-4 mb-10">
+
+                                    <motion.div
+                                        whileHover={{ rotate: 8, scale: 1.05 }}
+                                        className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 items-center justify-center hidden md:flex"
+                                    >
+                                        <LineChart className="text-primary " size={28} />
+                                    </motion.div>
 
                                     <div>
-                                        <p className="text-primary uppercase tracking-[3px] text-[10px] md:text-xs font-semibold">
+                                        <p className="text-primary uppercase tracking-[4px] text-xs font-semibold mb-2">
                                             Core Expertise
                                         </p>
 
-                                        <h3 className="text-xl md:text-3xl font-bold text-white mt-1">
-                                            Production-Ready Development
+                                        <h3 className="text-xl md:text-4xl font-medium text-white leading-tight">
+                                            Production-Ready Engineering
                                         </h3>
                                     </div>
 
                                 </div>
 
                                 <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl">
-                                    Scalable frontend and backend architectures engineered for
-                                    reliability, maintainability, performance, and long-term growth.
-                                    Designed to support real-world business operations at production level.
+                                    I develop scalable frontend and backend systems focused on
+                                    reliability, performance, maintainability, and real-world business operations.
+                                    From UI architecture to deployment and optimization,
+                                    every system is built with production quality in mind.
                                 </p>
 
                             </div>
 
-                            {/* Bottom Metrics */}
-                            <div className="flex gap-10 pt-12 flex-wrap">
+                            {/* BOTTOM METRICS */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-14">
 
-                                <div>
-                                    <p className="text-2xl md:text-4xl font-bold text-primary">10+</p>
-                                    <p className="text-zinc-500 text-sm mt-1">
-                                        Systems Built
-                                    </p>
-                                </div>
+                                {[
+                                    ["10+", "Systems Built"],
+                                    ["5+", "Live Deployments"],
+                                    ["Full", "Stack Systems"],
+                                    ["SEO", "Optimized"],
+                                ].map(([value, label], i) => (
 
-                                <div>
-                                    <p className="text-2xl md:text-4xl font-bold text-white">Full</p>
-                                    <p className="text-zinc-500 text-sm mt-1">
-                                        Stack Architecture
-                                    </p>
-                                </div>
+                                    <motion.div
+                                        key={i}
+                                        whileHover={{ y: -4 }}
+                                        className="
+                                            rounded-2xl
+                                            border border-white/10
+                                            bg-black/30
+                                            p-5
+                                        "
+                                    >
+                                        <p className="text-2xl md:text-3xl font-bold text-primary">
+                                            {value}
+                                        </p>
+
+                                        <p className="text-zinc-500 text-sm mt-2">
+                                            {label}
+                                        </p>
+                                    </motion.div>
+
+                                ))}
 
                             </div>
 
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* RIGHT STACK */}
+                    {/* ================= SIDE STACK ================= */}
                     <div className="lg:col-span-5 flex flex-col gap-6">
 
-                        {/* CARD 2 */}
-                        <div className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8">
+                        {valueCards.map((card, index) =>
+                        {
+                            const Icon = card.icon;
 
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                            return (
+                                <motion.div
+                                    key={card.id}
+                                    initial={{ opacity: 0, x: 30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: index * 0.1,
+                                    }}
+                                    whileHover={{ y: -5 }}
+                                    className="
+                                        group relative overflow-hidden
+                                        rounded-[28px]
+                                        border border-white/10
+                                        bg-white/[0.03]
+                                        backdrop-blur-2xl
+                                        p-8
+                                    "
+                                >
 
-                            <div className="relative z-10">
+                                    {/* hover overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
-                                <div className="flex items-center justify-between mb-6">
+                                    <div className="relative z-10">
 
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary font-bold">02</span>
+                                        {/* top */}
+                                        <div className="flex items-center justify-between mb-7">
+
+                                            <motion.div
+                                                whileHover={{ scale: 1.08 }}
+                                                className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center"
+                                            >
+                                                <Icon className="text-primary" size={24} />
+                                            </motion.div>
+
+                                            <div className="flex items-center gap-3">
+
+                                                <span className="text-primary text-xs uppercase tracking-[3px]">
+                                                    {card.label}
+                                                </span>
+
+                                                <ArrowUpRight
+                                                    size={16}
+                                                    className="text-zinc-500 group-hover:text-primary transition"
+                                                />
+                                            </div>
+
+                                        </div>
+
+                                        <h3 className="text-2xl font-semibold text-white mb-4 leading-snug">
+                                            {card.title}
+                                        </h3>
+
+                                        <p className="text-zinc-400 leading-relaxed">
+                                            {card.description}
+                                        </p>
+
                                     </div>
-
-                                    <span className="text-primary text-xs uppercase tracking-[3px]">
-                                        Optimization
-                                    </span>
-
-                                </div>
-
-                                <h3 className="text-2xl font-semibold text-white mb-4">
-                                    Performance & SEO
-                                </h3>
-
-                                <p className="text-zinc-400 leading-relaxed">
-                                    High-speed interfaces optimized for responsiveness,
-                                    search visibility, and premium user experience.
-                                </p>
-
-                            </div>
-                        </div>
-
-                        {/* CARD 3 */}
-                        <div className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8">
-
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
-                            <div className="relative z-10">
-
-                                <div className="flex items-center justify-between mb-6">
-
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary font-bold">03</span>
-                                    </div>
-
-                                    <span className="text-primary text-xs uppercase tracking-[3px]">
-                                        Security
-                                    </span>
-
-                                </div>
-
-                                <h3 className="text-2xl font-semibold text-white mb-4">
-                                    Secure Payment Systems
-                                </h3>
-
-                                <p className="text-zinc-400 leading-relaxed">
-                                    Reliable backend workflows, secure payment integrations,
-                                    and structured system automation.
-                                </p>
-
-                            </div>
-                        </div>
-
-                        {/* CARD 4 */}
-                        <div className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8">
-
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
-                            <div className="relative z-10">
-
-                                <div className="flex items-center justify-between mb-6">
-
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary font-bold">04</span>
-                                    </div>
-
-                                    <span className="text-primary text-xs uppercase tracking-[3px]">
-                                        Experience
-                                    </span>
-
-                                </div>
-
-                                <h3 className="text-2xl font-semibold text-white mb-4">
-                                    Business-Focused UI
-                                </h3>
-
-                                <p className="text-zinc-400 leading-relaxed">
-                                    Modern digital experiences engineered to increase trust,
-                                    engagement, and user retention.
-                                </p>
-
-                            </div>
-                        </div>
+                                </motion.div>
+                            );
+                        })}
 
                     </div>
+
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Values
+export default Values;

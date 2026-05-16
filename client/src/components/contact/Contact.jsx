@@ -2,7 +2,8 @@ import
 {
     Mail,
     Phone,
-    ArrowUpRight
+    ArrowUpRight,
+    MessageCircle
 } from "lucide-react";
 
 const Contact = () =>
@@ -65,25 +66,26 @@ const Contact = () =>
                                 </div>
 
                                 {/* CONTACT ITEMS */}
-                                <div className="space-y-5">
+                                <div className="space-y-4">
 
-                                    {/* PHONE */}
+                                    {/* ================= PHONE CALL ================= */}
                                     <a
                                         href="tel:+9779843822887"
-                                        className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-6 py-5 hover:border-primary/30 transition-all duration-300"
+                                        className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-5 md:px-6 py-4 md:py-5 
+        hover:border-primary/30 transition-all duration-300"
                                     >
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-3 md:gap-4">
 
-                                            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                                <Phone className="text-primary" size={22} />
+                                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                                                <Phone className="text-primary" size={20} />
                                             </div>
 
                                             <div>
-                                                <p className="text-zinc-500 text-sm">
-                                                    Phone / WhatsApp
+                                                <p className="text-zinc-500 text-xs md:text-sm">
+                                                    Phone Call
                                                 </p>
 
-                                                <p className="text-white font-medium text-lg">
+                                                <p className="text-white font-medium text-sm md:text-lg">
                                                     +977 9843822887
                                                 </p>
                                             </div>
@@ -93,23 +95,55 @@ const Contact = () =>
                                         <ArrowUpRight className="text-zinc-500 group-hover:text-primary transition" />
                                     </a>
 
-                                    {/* EMAIL */}
-                                    <a
-                                        href="mailto:suyanmanamatya8@gmail.com"
-                                        className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-6 py-5 hover:border-primary/30 transition-all duration-300"
-                                    >
-                                        <div className="flex items-center gap-4">
 
-                                            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                                <Mail className="text-primary" size={22} />
+                                    {/* ================= WHATSAPP ================= */}
+                                    <a
+                                        href="https://wa.me/9779843822887"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-5 md:px-6 py-4 md:py-5 
+        hover:border-primary/30 transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-3 md:gap-4">
+
+                                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-green-500/10 border border-green-400/20 flex items-center justify-center">
+                                                <MessageCircle className="text-green-400" size={20} />
                                             </div>
 
                                             <div>
-                                                <p className="text-zinc-500 text-sm">
+                                                <p className="text-zinc-500 text-xs md:text-sm">
+                                                    WhatsApp Chat
+                                                </p>
+
+                                                <p className="text-white font-medium text-sm md:text-lg">
+                                                    Instant Response
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <ArrowUpRight className="text-zinc-500 group-hover:text-green-400 transition" />
+                                    </a>
+
+
+                                    {/* ================= EMAIL ================= */}
+                                    <a
+                                        href="mailto:suyanmanamatya8@gmail.com"
+                                        className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-5 md:px-6 py-4 md:py-5 
+        hover:border-primary/30 transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-3 md:gap-4">
+
+                                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                                                <Mail className="text-primary" size={20} />
+                                            </div>
+
+                                            <div>
+                                                <p className="text-zinc-500 text-xs md:text-sm">
                                                     Email Address
                                                 </p>
 
-                                                <p className="text-white font-medium text-lg">
+                                                <p className="text-white font-medium text-sm md:text-lg break-all">
                                                     suyanmanamatya8@gmail.com
                                                 </p>
                                             </div>
@@ -127,8 +161,8 @@ const Contact = () =>
                             <div className="mt-12 pt-8 border-t border-white/10 flex items-center gap-3">
                                 <span className="w-3 h-3 rounded-full bg-primary animate-pulse" />
 
-                                <p className="text-zinc-400 text-sm">
-                                    Currently available for selected freelance projects.
+                                <p className="text-zinc-400 text-xs md:text-sm">
+                                    Available for freelance projects.
                                 </p>
                             </div>
 
@@ -150,7 +184,7 @@ const Contact = () =>
                             <div className="relative z-10">
                                 {/* <Github className="text-primary mb-10" size={34} /> */}
 
-                                <h3 className="text-2xl font-semibold text-white mb-3">
+                                <h3 className="header text-base md:text-2xl font-semibold text-white mb-3">
                                     GitHub
                                 </h3>
 
@@ -172,7 +206,7 @@ const Contact = () =>
                             <div className="relative z-10">
                                 {/* <Linkedin className="text-primary mb-10" size={34} /> */}
 
-                                <h3 className="text-2xl font-semibold text-white mb-3">
+                                <h3 className="header text-base md:text-2xl font-semibold text-white mb-3">
                                     LinkedIn
                                 </h3>
 
@@ -194,7 +228,7 @@ const Contact = () =>
                             <div className="relative z-10">
                                 {/* <Facebook className="text-primary mb-10" size={34} /> */}
 
-                                <h3 className="text-2xl font-semibold text-white mb-3">
+                                <h3 className="header text-base md:text-2xl font-semibold text-white mb-3">
                                     Facebook
                                 </h3>
 
@@ -216,7 +250,7 @@ const Contact = () =>
                             <div className="relative z-10">
                                 {/* <Twitter className="text-primary mb-10" size={34} /> */}
 
-                                <h3 className="text-2xl font-semibold text-white mb-3">
+                                <h3 className="header text-base md:text-2xl font-semibold text-white mb-3">
                                     Twitter / X
                                 </h3>
 

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/logo/green.png";
+import { projects } from '../../data/projectData.js';
 
 const Navbar = () =>
 {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState("home");
+    const [openProjects, setOpenProjects] = useState(false);
 
     const navLinks = [
         "home",
@@ -89,7 +91,7 @@ const Navbar = () =>
                 {/* LOGO */}
                 <a href="#home" className="flex items-center gap-2">
                     <img src={logo} alt="Logo" className="w-8 h-8" />
-                    <h1 className="text-primary font-semibold tracking-wide text-lg">
+                    <h1 className="header text-primary font-semibold tracking-wide text-lg">
                         SuyanMan
                     </h1>
                 </a>
@@ -115,6 +117,12 @@ const Navbar = () =>
                             />
                         </a>
                     ))}
+                    <button
+                        onClick={() => setOpenProjects(true)}
+                        className="header  px-4 py-2 bg-darkGreen text-white/80 rounded-xl font-medium transition hover:opacity-90 hover:shadow-[0_0_30px_rgba(22,163,74,0.35)] cursor-pointer"
+                    >
+                        Projects
+                    </button>
                 </div>
 
                 {/* MOBILE BUTTON */}
@@ -171,6 +179,123 @@ const Navbar = () =>
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* project popup modal */}
+
+            <AnimatePresence>
+                {openProjects && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xl px-4 py-10"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.9, y: 20, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="relative w-full max-w-7xl h-[90vh] bg-[#0b0b0b] border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+                        >
+                            {/* GLOW EFFECTS */}
+                            <div className="absolute -top-20 -left-20 w-[350px] h-[350px] bg-primary/20 blur-[140px] rounded-full" />
+                            <div className="absolute -bottom-20 -right-20 w-[350px] h-[350px] bg-emerald-400/10 blur-[140px] rounded-full" />
+
+                            {/* CLOSE BUTTON */}
+                            <button
+                                onClick={() => setOpenProjects(false)}
+                                className="absolute top-5 right-5 text-zinc-400 hover:text-white transition z-50"
+                            >
+                                <X />
+                            </button>
+
+                            {/* HEADER */}
+                            <div className="relative z-10 px-10 pt-10 pb-6 border-b border-white/10">
+                                <p className="text-primary uppercase tracking-[5px] text-xs mb-2">
+                                    Live Development Portfolio
+                                </p>
+
+                                <h2 className="header text-3xl font-bold text-white">
+                                    Systems I’ve Built & Maintained
+                                </h2>
+
+                                <p className="text-zinc-400 text-sm mt-2">
+                                    Real production-grade systems including eCommerce, payments, SaaS, and business platforms.
+                                </p>
+                            </div>
+
+                            {/* PROJECT GRID */}
+                            <div className="relative z-10 flex-1 overflow-y-auto p-8 grid md:grid-cols-2 gap-6">
+
+                                {projects.map((project, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="group relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 "
+                                    >
+                                        {/* hover glow */}
+                                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition duration-300" />
+
+                                        <div className="relative z-10 space-y-4">
+
+                                            {/* TOP HEADER */}
+                                            <div className="flex items-center justify-between">
+
+                                                {/* PROJECT LOGO PLACEHOLDER */}
+                                                <div className="w-10 h-10 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center text-primary text-xs">
+                                                    <img src={project.logo} alt="project logo" className="rounded-xl" />
+                                                </div>
+
+                                                {/* LIVE BUTTON */}
+                                                <a
+                                                    href={project.link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="text-xs px-3 py-1 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition"
+                                                >
+                                                    Visit Live
+                                                </a>
+
+                                            </div>
+
+                                            {/* TITLE */}
+                                            <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(22,163,74,0.8)]" />
+                                                {project.title}
+                                            </h3>
+
+                                            {/* DESCRIPTION */}
+                                            <p className="text-zinc-400 text-sm leading-relaxed">
+                                                {project.description}
+                                            </p>
+
+                                            {/* TECH STACK */}
+                                            <div className="flex flex-wrap gap-2 pt-2">
+                                                {project.tech.map((tech, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="text-xs px-3 py-1 rounded-full 
+                                            bg-black/40 border border-white/10 
+                                            text-zinc-300
+                                            hover:border-primary/40 hover:text-primary transition"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                        </div>
+                                    </motion.div>
+                                ))}
+
+                            </div>
+
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
         </nav>
     );
 };

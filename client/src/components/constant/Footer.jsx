@@ -63,9 +63,8 @@ const Footer = () =>
 
                             {[
                                 "Home",
+                                "Value",
                                 "Skills",
-                                "Projects",
-                                "Services",
                                 "Contact",
                             ].map((item) => (
                                 <a
@@ -145,10 +144,10 @@ const Footer = () =>
                             </p>
 
                             <a
-                                href="mailto:your@email.com"
+                                href="mailto:suyanmanamatya8@gmail.com"
                                 className="text-white text-lg hover:text-primary transition"
                             >
-                                your@email.com
+                                suyanmanamatya8@gmail.com
                             </a>
 
                         </div>
@@ -164,15 +163,6 @@ const Footer = () =>
                         © 2026 SuyanMan. Designed & engineered with precision.
                     </p>
 
-                    <div className="flex items-center gap-3">
-
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-
-                        <p className="text-zinc-500 text-sm">
-                            Available for selected collaborations
-                        </p>
-
-                    </div>
 
                 </div>
 

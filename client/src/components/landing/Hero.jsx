@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
 import Suyan from "../../assets/person/suyan2.png";
 import { projects } from '../../data/projectData.js';
+import { Link } from "react-router-dom";
 
 export default function Hero()
 {
@@ -14,7 +15,6 @@ export default function Hero()
             id="home"
         >
 
-            {/* BACKGROUND */}
             {/* BACKGROUND */}
             <div className="absolute inset-0 z-0">
 
@@ -36,7 +36,7 @@ export default function Hero()
             </div>
 
             {/* CONTENT */}
-            <div className="relative z-10 w-full mx-auto px-6 lg:py-0 py-24 ">
+            <div className="relative z-10 w-full mx-auto px-6 lg:py-0 pt-30 ">
 
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
 
@@ -76,14 +76,14 @@ export default function Hero()
 
                             <button
                                 onClick={() => setOpenProjects(true)}
-                                className="px-8 py-4 bg-darkGreen text-white/80 rounded-xl font-medium transition hover:opacity-90 hover:shadow-[0_0_30px_rgba(22,163,74,0.35)] cursor-pointer"
+                                className="px-8 py-4 bg-darkGreen text-white/80 rounded-2xl font-medium transition hover:opacity-90 hover:shadow-[0_0_30px_rgba(22,163,74,0.35)] cursor-pointer"
                             >
-                                View Work
+                                Projects
                             </button>
 
                             <a
                                 href="#contact"
-                                className="px-8 py-4 border border-zinc-700 bg-zinc-950/40 text-zinc-200 rounded-xl font-medium backdrop-blur-md hover:bg-zinc-800 transition cursor-pointer"
+                                className="px-8 py-4 border border-zinc-700 bg-zinc-950/40 text-zinc-200 rounded-2xl font-medium backdrop-blur-md hover:bg-zinc-800 transition cursor-pointer"
                             >
                                 Let’s Talk
                             </a>
@@ -206,58 +206,76 @@ export default function Hero()
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xl px-4"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xl px-4 py-10"
                     >
-
-                        {/* MODAL BOX */}
                         <motion.div
                             initial={{ scale: 0.9, y: 20, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, y: 20, opacity: 0 }}
                             transition={{ duration: 0.25 }}
-                            className="relative w-full max-w-3xl bg-[#0b0b0b] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden"
+                            className="relative w-full max-w-7xl h-[90vh] bg-[#0b0b0b] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                         >
-                            <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-primary/20 blur-[120px] rounded-full" />
-                            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-emerald-400/10 blur-[120px] rounded-full" />
+                            {/* GLOW EFFECTS */}
+                            <div className="absolute -top-20 -left-20 w-[350px] h-[350px] bg-primary/20 blur-[140px] rounded-full" />
+                            <div className="absolute -bottom-20 -right-20 w-[350px] h-[350px] bg-emerald-400/10 blur-[140px] rounded-full" />
 
                             {/* CLOSE BUTTON */}
                             <button
                                 onClick={() => setOpenProjects(false)}
-                                className="absolute top-5 right-5 text-zinc-400 hover:text-white cursor-pointer transition"
+                                className="absolute top-5 right-5 text-zinc-400 hover:text-white transition z-50"
                             >
                                 <X />
                             </button>
 
                             {/* HEADER */}
-                            <div className="relative z-10 mb-8">
-
-                                <p className="text-primary uppercase tracking-[5px] text-xs mb-2">
+                            <div className="relative z-10 px-10 pt-10 pb-6 border-b border-white/10">
+                                <p className="text-primary uppercase tracking-[5px] text-[9px] md:text-xs mb-2">
                                     Live Development Portfolio
                                 </p>
 
-                                <h2 className="text-3xl font-bold text-white">
-                                    Systems I’ve Built & Maintain
+                                <h2 className="header text-base md:text-3xl font-bold text-white">
+                                    Systems I’ve Built & Maintained
                                 </h2>
 
-                                <p className="text-zinc-400 text-sm mt-2">
-                                    Real production projects including eCommerce, payments, and business platforms.
+                                <p className="text-zinc-400 text-[9px] md:text-sm mt-2">
+                                    Real production-grade systems including eCommerce, payments, SaaS, and business platforms.
                                 </p>
-
                             </div>
 
-                            {/* PROJECT LIST */}
-                            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                            {/* PROJECT GRID */}
+                            <div className="relative z-10 flex-1 overflow-y-auto p-8 grid md:grid-cols-2 gap-6">
 
                                 {projects.map((project, index) => (
-                                    <div
+                                    <motion.div
                                         key={index}
-                                        className="relative p-5 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden group"
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="group relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 "
                                     >
-
-                                        {/* glow background */}
+                                        {/* hover glow */}
                                         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition duration-300" />
 
-                                        <div className="relative z-10">
+                                        <div className="relative z-10 space-y-4">
+
+                                            {/* TOP HEADER */}
+                                            <div className="flex items-center justify-between">
+
+                                                {/* PROJECT LOGO PLACEHOLDER */}
+                                                <div className="w-10 h-10 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center text-primary text-xs">
+                                                    <img src={project.logo} alt="project logo" className="rounded-xl" />
+                                                </div>
+
+                                                {/* LIVE BUTTON */}
+                                                <a
+                                                    href={project.link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="text-xs px-3 py-1 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition"
+                                                >
+                                                    Visit Live
+                                                </a>
+
+                                            </div>
 
                                             {/* TITLE */}
                                             <h3 className="text-white font-semibold text-lg flex items-center gap-2">
@@ -266,16 +284,19 @@ export default function Hero()
                                             </h3>
 
                                             {/* DESCRIPTION */}
-                                            <p className="text-zinc-400 text-sm mt-2 leading-relaxed">
+                                            <p className="text-zinc-400 text-sm leading-relaxed">
                                                 {project.description}
                                             </p>
 
                                             {/* TECH STACK */}
-                                            <div className="flex flex-wrap gap-2 mt-4">
+                                            <div className="flex flex-wrap gap-2 pt-2">
                                                 {project.tech.map((tech, i) => (
                                                     <span
                                                         key={i}
-                                                        className="text-xs px-3 py-1 rounded-full bg-black/40 border border-white/10 text-zinc-300"
+                                                        className="text-xs px-3 py-1 rounded-full 
+                                            bg-black/40 border border-white/10 
+                                            text-zinc-300
+                                            hover:border-primary/40 hover:text-primary transition"
                                                     >
                                                         {tech}
                                                     </span>
@@ -283,23 +304,12 @@ export default function Hero()
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
 
                             </div>
 
-                            {/* FOOTER ACTION */}
-                            <div className="mt-8 flex justify-end">
-                                <button
-                                    className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-black font-semibold hover:opacity-90 transition"
-                                >
-                                    View Full Projects
-                                    <ExternalLink size={16} />
-                                </button>
-                            </div>
-
                         </motion.div>
-
                     </motion.div>
                 )}
             </AnimatePresence>
