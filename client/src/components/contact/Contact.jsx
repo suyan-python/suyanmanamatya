@@ -10,7 +10,7 @@ const Contact = () =>
     return (
         <section
             id="contact"
-            className="relative py-32 px-6 bg-[#09090b] overflow-hidden"
+            className="relative py-20 md:py-32 px-6 bg-[#09090b] overflow-hidden"
         >
 
             {/* BACKGROUND GLOW */}
@@ -32,7 +32,7 @@ const Contact = () =>
                         </span>
                     </h2>
 
-                    <p className="text-zinc-400 text-lg leading-relaxed mt-6 max-w-2xl mx-auto">
+                    <p className="text-zinc-400 text-sm md:text-lg leading-relaxed mt-6 max-w-2xl mx-auto">
                         Open to collaborations, freelance opportunities,
                         system architecture projects, and innovative digital experiences.
                     </p>
@@ -58,7 +58,7 @@ const Contact = () =>
                                         Direct Contact
                                     </p>
 
-                                    <h3 className="text-4xl font-bold text-white leading-tight">
+                                    <h3 className="header text-xl md:text-4xl text-white leading-tight">
                                         Available for meaningful
                                         digital collaborations.
                                     </h3>
@@ -69,7 +69,7 @@ const Contact = () =>
 
                                     {/* PHONE */}
                                     <a
-                                        href="tel:+9779800000000"
+                                        href="tel:+9779843822887"
                                         className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-6 py-5 hover:border-primary/30 transition-all duration-300"
                                     >
                                         <div className="flex items-center gap-4">
@@ -84,7 +84,7 @@ const Contact = () =>
                                                 </p>
 
                                                 <p className="text-white font-medium text-lg">
-                                                    +977 98XXXXXXXX
+                                                    +977 9843822887
                                                 </p>
                                             </div>
 
@@ -95,7 +95,7 @@ const Contact = () =>
 
                                     {/* EMAIL */}
                                     <a
-                                        href="mailto:your@email.com"
+                                        href="mailto:suyanmanamatya8@gmail.com"
                                         className="group flex items-center justify-between bg-black/30 border border-white/10 rounded-2xl px-6 py-5 hover:border-primary/30 transition-all duration-300"
                                     >
                                         <div className="flex items-center gap-4">
@@ -110,7 +110,7 @@ const Contact = () =>
                                                 </p>
 
                                                 <p className="text-white font-medium text-lg">
-                                                    your@email.com
+                                                    suyanmanamatya8@gmail.com
                                                 </p>
                                             </div>
 

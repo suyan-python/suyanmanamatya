@@ -49,24 +49,24 @@ const Values = () =>
 
                                 <div className="flex items-center gap-3 mb-8">
                                     <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary text-xl font-bold">
+                                        <span className="text-primary text-xs md:text-xl font-bold">
                                             01
                                         </span>
                                     </div>
 
                                     <div>
-                                        <p className="text-primary uppercase tracking-[3px] text-xs font-semibold">
+                                        <p className="text-primary uppercase tracking-[3px] text-[10px] md:text-xs font-semibold">
                                             Core Expertise
                                         </p>
 
-                                        <h3 className="text-3xl font-bold text-white mt-1">
+                                        <h3 className="text-xl md:text-3xl font-bold text-white mt-1">
                                             Production-Ready Development
                                         </h3>
                                     </div>
 
                                 </div>
 
-                                <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl">
+                                <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl">
                                     Scalable frontend and backend architectures engineered for
                                     reliability, maintainability, performance, and long-term growth.
                                     Designed to support real-world business operations at production level.
@@ -78,14 +78,14 @@ const Values = () =>
                             <div className="flex gap-10 pt-12 flex-wrap">
 
                                 <div>
-                                    <p className="text-4xl font-bold text-primary">10+</p>
+                                    <p className="text-2xl md:text-4xl font-bold text-primary">10+</p>
                                     <p className="text-zinc-500 text-sm mt-1">
                                         Systems Built
                                     </p>
                                 </div>
 
                                 <div>
-                                    <p className="text-4xl font-bold text-white">Full</p>
+                                    <p className="text-2xl md:text-4xl font-bold text-white">Full</p>
                                     <p className="text-zinc-500 text-sm mt-1">
                                         Stack Architecture
                                     </p>

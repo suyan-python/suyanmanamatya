@@ -1,8 +1,13 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X, ExternalLink } from "lucide-react";
 import Suyan from "../../assets/person/suyan2.png";
+import { projects } from '../../data/projectData.js';
 
 export default function Hero()
 {
+    const [openProjects, setOpenProjects] = useState(false);
+
     return (
         <section
             className="relative min-h-screen flex items-center justify-center bg-[#09090b] text-white overflow-hidden"
@@ -16,17 +21,17 @@ export default function Hero()
                 <img
                     src={Suyan}
                     alt="Background"
-                    className="w-full h-full object-cover object-center scale-105 lg:scale-110 animate-slowZoom"
+                    className="w-full h-full object-cover object-center scale-105 lg:scale-110 animate-slowZoom pt-20 md:pt-16"
                 />
 
                 {/* DESKTOP GRADIENT */}
                 <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-zinc-950 via-transparent to-darkGreen/70" />
 
                 {/* MOBILE GRADIENT (SOFTER + IMAGE STILL VISIBLE) */}
-                <div className="absolute inset-0 block lg:hidden bg-gradient-to-t from-zinc-950/70 via-zinc-950/30 to-transparent" />
+                <div className="absolute inset-0 block lg:hidden bg-gradient-to-t from-darkGreen/50 via-darkGreen/30 to-transparent" />
 
                 {/* LIGHT VIGNETTE (DO NOT KILL IMAGE) */}
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-black/30" />
 
             </div>
 
@@ -46,7 +51,7 @@ export default function Hero()
                         {/* BADGE */}
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md">
                             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                            <p className="header text-primary uppercase text-xs font-semibold tracking-[3px]">
+                            <p className="header text-primary uppercase text-[9px] md:text-xs font-semibold tracking-[3px] ">
                                 Full Stack Developer | System Designer | SEO Specialist
                             </p>
                         </div>
@@ -69,16 +74,16 @@ export default function Hero()
                         {/* CTA BUTTONS */}
                         <div className="flex gap-4 pt-4 flex-wrap">
 
-                            <a
-                                href="#projects"
-                                className="px-8 py-4 bg-darkGreen text-white/80 rounded-xl font-medium transition hover:opacity-90 hover:shadow-[0_0_30px_rgba(22,163,74,0.35)]"
+                            <button
+                                onClick={() => setOpenProjects(true)}
+                                className="px-8 py-4 bg-darkGreen text-white/80 rounded-xl font-medium transition hover:opacity-90 hover:shadow-[0_0_30px_rgba(22,163,74,0.35)] cursor-pointer"
                             >
                                 View Work
-                            </a>
+                            </button>
 
                             <a
                                 href="#contact"
-                                className="px-8 py-4 border border-zinc-700 bg-zinc-950/40 text-zinc-200 rounded-xl font-medium backdrop-blur-md hover:bg-zinc-800 transition"
+                                className="px-8 py-4 border border-zinc-700 bg-zinc-950/40 text-zinc-200 rounded-xl font-medium backdrop-blur-md hover:bg-zinc-800 transition cursor-pointer"
                             >
                                 Let’s Talk
                             </a>
@@ -192,6 +197,112 @@ export default function Hero()
 
                 </div>
             </div>
+
+
+
+            <AnimatePresence>
+                {openProjects && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xl px-4"
+                    >
+
+                        {/* MODAL BOX */}
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.9, y: 20, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="relative w-full max-w-3xl bg-[#0b0b0b] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden"
+                        >
+                            <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-primary/20 blur-[120px] rounded-full" />
+                            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-emerald-400/10 blur-[120px] rounded-full" />
+
+                            {/* CLOSE BUTTON */}
+                            <button
+                                onClick={() => setOpenProjects(false)}
+                                className="absolute top-5 right-5 text-zinc-400 hover:text-white cursor-pointer transition"
+                            >
+                                <X />
+                            </button>
+
+                            {/* HEADER */}
+                            <div className="relative z-10 mb-8">
+
+                                <p className="text-primary uppercase tracking-[5px] text-xs mb-2">
+                                    Live Development Portfolio
+                                </p>
+
+                                <h2 className="text-3xl font-bold text-white">
+                                    Systems I’ve Built & Maintain
+                                </h2>
+
+                                <p className="text-zinc-400 text-sm mt-2">
+                                    Real production projects including eCommerce, payments, and business platforms.
+                                </p>
+
+                            </div>
+
+                            {/* PROJECT LIST */}
+                            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+
+                                {projects.map((project, index) => (
+                                    <div
+                                        key={index}
+                                        className="relative p-5 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden group"
+                                    >
+
+                                        {/* glow background */}
+                                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition duration-300" />
+
+                                        <div className="relative z-10">
+
+                                            {/* TITLE */}
+                                            <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(22,163,74,0.8)]" />
+                                                {project.title}
+                                            </h3>
+
+                                            {/* DESCRIPTION */}
+                                            <p className="text-zinc-400 text-sm mt-2 leading-relaxed">
+                                                {project.description}
+                                            </p>
+
+                                            {/* TECH STACK */}
+                                            <div className="flex flex-wrap gap-2 mt-4">
+                                                {project.tech.map((tech, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="text-xs px-3 py-1 rounded-full bg-black/40 border border-white/10 text-zinc-300"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                ))}
+
+                            </div>
+
+                            {/* FOOTER ACTION */}
+                            <div className="mt-8 flex justify-end">
+                                <button
+                                    className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-black font-semibold hover:opacity-90 transition"
+                                >
+                                    View Full Projects
+                                    <ExternalLink size={16} />
+                                </button>
+                            </div>
+
+                        </motion.div>
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

@@ -38,22 +38,30 @@ const Navbar = () =>
         const observer = new IntersectionObserver(
             (entries) =>
             {
+                let bestEntry = null;
+
                 entries.forEach((entry) =>
                 {
-                    if (entry.isIntersecting)
+                    if (!entry.isIntersecting) return;
+
+                    if (
+                        !bestEntry ||
+                        entry.intersectionRatio > bestEntry.intersectionRatio
+                    )
                     {
-                        setActive(entry.target.id);
+                        bestEntry = entry;
                     }
                 });
+
+                if (bestEntry?.target?.id)
+                {
+                    setActive(bestEntry.target.id);
+                }
             },
             {
                 root: null,
-
-                // 🔥 KEY FIX: multiple thresholds instead of single one
-                threshold: [0.2, 0.4, 0.6],
-
-                // better section detection alignment
-                rootMargin: "-20% 0px -40% 0px",
+                threshold: [0.2, 0.3, 0.5, 0.7],
+                rootMargin: "-15% 0px -35% 0px",
             }
         );
 
@@ -132,7 +140,7 @@ const Navbar = () =>
                         className="md:hidden absolute top-20 left-1/2 -translate-x-1/2 w-[92vw]"
                     >
 
-                        <div className="bg-black/70 border border-white/10 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl">
+                        <div className="bg-black/70 border border-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl">
 
                             <div className="flex flex-col gap-3">
 
@@ -143,7 +151,7 @@ const Navbar = () =>
                                         onClick={() => setOpen(false)}
                                         className={`px-4 py-3 rounded-xl uppercase tracking-wide text-sm transition
                             ${active === item
-                                                ? "bg-primary/10 text-primary"
+                                                ? " text-primary"
                                                 : "text-zinc-300 hover:bg-white/5 hover:text-white"
                                             }`}
                                     >
@@ -155,7 +163,8 @@ const Navbar = () =>
 
                             {/* footer */}
                             <div className="mt-4 pt-4 border-t border-white/10 text-xs text-zinc-500 text-center">
-                                Navigate through sections
+                                <img src={logo} alt="Logo" className="w-4 h-4 inline-block mr-1" />
+                                powered by SuyanMan
                             </div>
 
                         </div>
