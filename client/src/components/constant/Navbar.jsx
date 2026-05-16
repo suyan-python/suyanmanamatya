@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/logo/green.png";
 
@@ -6,18 +7,16 @@ const Navbar = () =>
 {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [active, setActive] = useState("");
+    const [active, setActive] = useState("home");
 
     const navLinks = [
-        "about",
+        "home",
+        "value",
         "skills",
-        "experience",
-        "projects",
-        "services",
         "contact",
     ];
 
-    // Scroll shrink + glass intensify
+    // SCROLL EFFECT (glass morph)
     useEffect(() =>
     {
         const handleScroll = () =>
@@ -29,12 +28,12 @@ const Navbar = () =>
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Scroll spy (active section detection)
+    // IMPROVED SCROLL SPY (more stable)
     useEffect(() =>
     {
-        const sections = navLinks.map((id) =>
-            document.getElementById(id)
-        );
+        const sections = navLinks
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
 
         const observer = new IntersectionObserver(
             (entries) =>
@@ -48,43 +47,44 @@ const Navbar = () =>
                 });
             },
             {
-                rootMargin: "-40% 0px -55% 0px",
-                threshold: 0.1,
+                root: null,
+
+                // 🔥 KEY FIX: multiple thresholds instead of single one
+                threshold: [0.2, 0.4, 0.6],
+
+                // better section detection alignment
+                rootMargin: "-20% 0px -40% 0px",
             }
         );
 
-        sections.forEach((sec) =>
-        {
-            if (sec) observer.observe(sec);
-        });
+        sections.forEach((sec) => observer.observe(sec));
 
         return () => observer.disconnect();
-    }, []);
+    }, [navLinks]);
 
     return (
         <nav className="fixed top-6 left-0 w-full z-50 flex justify-center px-4">
 
-            {/* Glow background */}
+            {/* glow */}
             <div className="absolute w-[600px] h-[200px] bg-primary/10 blur-[120px] rounded-full -top-10" />
 
+            {/* MAIN BAR */}
             <div
-                className={`relative flex items-center justify-between gap-10 px-8 transition-all duration-300
+                className={`relative flex items-center justify-between gap-10 px-6 md:px-8 transition-all duration-300
                 rounded-full border border-white/10 shadow-2xl backdrop-blur-xl
                 ${scrolled
-                        ? "py-2 bg-black/60 scale-[0.96]"
+                        ? "py-2 bg-black/70 scale-[0.96]"
                         : "py-3 bg-white/5 scale-100"
                     }`}
             >
 
                 {/* LOGO */}
-                <div className="flex flex-row items-center gap-2">
-                    <a href="#home" className="text-primary  text-lg tracking-wide">
-                        <img src={logo} alt="Logo" className="w-8 h-8 inline-block mr-2" />
-                        <h1 className="header">
-                            SuyanMan
-                        </h1>
-                    </a>
-                </div>
+                <a href="#home" className="flex items-center gap-2">
+                    <img src={logo} alt="Logo" className="w-8 h-8" />
+                    <h1 className="text-primary font-semibold tracking-wide text-lg">
+                        SuyanMan
+                    </h1>
+                </a>
 
                 {/* DESKTOP NAV */}
                 <div className="hidden md:flex items-center gap-6">
@@ -92,17 +92,17 @@ const Navbar = () =>
                         <a
                             key={item}
                             href={`#${item}`}
-                            className={`relative text-sm transition duration-300 px-2 py-1 rounded-full uppercase
+                            className={`relative text-sm uppercase tracking-wide transition
                             ${active === item
-                                    ? "text-primary font-medium"
+                                    ? "text-primary"
                                     : "text-zinc-300 hover:text-white"
                                 }`}
                         >
                             {item}
 
-                            {/* active glow underline */}
+                            {/* active dot */}
                             <span
-                                className={`absolute left-1/2 -bottom-2 w-1 h-1 rounded-full transition-all duration-300
+                                className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full transition
                                 ${active === item ? "bg-primary scale-100" : "scale-0"}`}
                             />
                         </a>
@@ -118,23 +118,50 @@ const Navbar = () =>
                 </button>
             </div>
 
-            {/* MOBILE MENU */}
-            {open && (
-                <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[90vw] bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:hidden">
-                    <div className="flex flex-col gap-4">
-                        {navLinks.map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item}`}
-                                className="text-zinc-300 hover:text-primary transition uppercase"
-                                onClick={() => setOpen(false)}
-                            >
-                                {item}
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            )}
+            {/* ===================== MOBILE MENU (FIXED PREMIUM UI) ===================== */}
+            <AnimatePresence>
+                {open && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{
+                            duration: 0.25,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="md:hidden absolute top-20 left-1/2 -translate-x-1/2 w-[92vw]"
+                    >
+
+                        <div className="bg-black/70 border border-white/10 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl">
+
+                            <div className="flex flex-col gap-3">
+
+                                {navLinks.map((item) => (
+                                    <a
+                                        key={item}
+                                        href={`#${item}`}
+                                        onClick={() => setOpen(false)}
+                                        className={`px-4 py-3 rounded-xl uppercase tracking-wide text-sm transition
+                            ${active === item
+                                                ? "bg-primary/10 text-primary"
+                                                : "text-zinc-300 hover:bg-white/5 hover:text-white"
+                                            }`}
+                                    >
+                                        {item}
+                                    </a>
+                                ))}
+
+                            </div>
+
+                            {/* footer */}
+                            <div className="mt-4 pt-4 border-t border-white/10 text-xs text-zinc-500 text-center">
+                                Navigate through sections
+                            </div>
+
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 };

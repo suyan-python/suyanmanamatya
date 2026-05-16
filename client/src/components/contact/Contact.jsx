@@ -19,20 +19,20 @@ const Contact = () =>
             <div className="relative z-10 max-w-7xl mx-auto">
 
                 {/* ===================== HEADER ===================== */}
-                <div className="max-w-3xl mb-20">
+                <div className="max-w-3xl mb-20 mx-auto text-center">
 
                     <p className="text-primary uppercase tracking-[4px] text-sm font-semibold mb-4">
-                        Contact & Network
+                        Let's Connect & Build Future
                     </p>
 
-                    <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-white">
-                        Let’s Build Something
+                    <h2 className="header text-4xl md:text-6xl font-bold leading-tight tracking-tight text-white">
+                        Build Something
                         <span className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent">
                             {" "}Meaningful.
                         </span>
                     </h2>
 
-                    <p className="text-zinc-400 text-lg leading-relaxed mt-6 max-w-2xl">
+                    <p className="text-zinc-400 text-lg leading-relaxed mt-6 max-w-2xl mx-auto">
                         Open to collaborations, freelance opportunities,
                         system architecture projects, and innovative digital experiences.
                     </p>

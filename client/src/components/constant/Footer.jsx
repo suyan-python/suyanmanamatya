@@ -1,7 +1,7 @@
 import
-    {
-        ArrowUpRight
-    } from "lucide-react";
+{
+    ArrowUpRight
+} from "lucide-react";
 
 import Logo from "../../assets/logo/green.png";
 
@@ -33,7 +33,7 @@ const Footer = () =>
                             </div>
 
                             <div>
-                                <h2 className="text-2xl font-bold text-white">
+                                <h2 className="header text-2xl font-bold text-primary">
                                     SuyanMan
                                 </h2>
 
