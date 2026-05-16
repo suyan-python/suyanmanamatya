@@ -1,4 +1,8 @@
 import ijobs from "../assets/logo/ijobs.jpg";
+import jhp from "../assets/logo/nav.png";
+import vudevi from "../assets/logo/logo.png";
+import evolve from "../assets/logo/evolve.png";
+import tours from "../assets/logo/logo.jpg";
 
 export const projects = [
   {
@@ -11,7 +15,7 @@ export const projects = [
   },
   {
     title: "Jewel Himalayan Products",
-    logo: ijobs,
+    logo: jhp,
     description:
       "Premium coffee eCommerce platform with full-stack architecture, responsive UI, cart system, payment integration, and SEO optimization.",
     tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
@@ -20,7 +24,7 @@ export const projects = [
 
   {
     title: "Vu Devi Services Pvt. Ltd",
-    logo: ijobs,
+    logo: vudevi,
     description:
       "Corporate outsourcing platform with service showcase, job portal features, and contact management system.",
     tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
@@ -29,7 +33,7 @@ export const projects = [
 
   {
     title: "Evolve Vue Pvt. Ltd.",
-    logo: ijobs,
+    logo: evolve,
     description:
       "Business service website with modern UI, service listing system, and scalable backend structure.",
     tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
@@ -38,7 +42,7 @@ export const projects = [
 
   {
     title: "Payment Gateway System (JHP Integration)",
-    logo: ijobs,
+    logo: jhp,
     description:
       "Secure eSewa payment integration built for Jewel Himalayan Products with backend order verification and transaction handling.",
     tech: ["Node.js", "Express.js", "eSewa API", "MongoDB"],
@@ -47,7 +51,7 @@ export const projects = [
 
   {
     title: "Tours & Travels Platform",
-    logo: ijobs,
+    logo: tours,
     description:
       "Travel booking system with destination listings, inquiry flow, and responsive UI optimized for conversions.",
     tech: ["React", "Node.js", "Express.js", "MongoDB"],
