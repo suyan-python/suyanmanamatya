@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import
 {
     ShieldCheck,
@@ -8,8 +7,53 @@ import
     ArrowUpRight,
 } from "lucide-react";
 
+import { motion, useInView, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+const stats = [
+    { value: 10, suffix: "+", label: "Systems Built" },
+    { value: 5, suffix: "+", label: "Live Deployments" },
+    { value: 100, suffix: "%", label: "Responsive Systems" },
+    { value: 24, suffix: "/7", label: "System Reliability" },
+
+];
+
+function CountUp({ value, suffix })
+{
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    const [display, setDisplay] = useState(0);
+
+    useEffect(() =>
+    {
+        if (!isInView) return;
+
+        const controls = animate(0, value, {
+            duration: 1.8,
+            ease: [0.22, 1, 0.36, 1],
+            onUpdate(latest)
+            {
+                setDisplay(Math.floor(latest));
+            },
+        });
+
+        return () => controls.stop();
+    }, [isInView, value]);
+
+    return (
+        <span ref={ref}>
+            {display}
+            {suffix}
+        </span>
+    );
+}
+
 const Values = () =>
 {
+
+
+
+
     const valueCards = [
         {
             id: "02",
@@ -179,30 +223,57 @@ const Values = () =>
                             {/* BOTTOM METRICS */}
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-14">
 
-                                {[
-                                    ["10+", "Systems Built"],
-                                    ["5+", "Live Deployments"],
-                                    ["Full", "Stack Systems"],
-                                    ["SEO", "Optimized"],
-                                ].map(([value, label], i) => (
+                                {stats.map((item, i) => (
 
                                     <motion.div
                                         key={i}
-                                        whileHover={{ y: -4 }}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: i * 0.08,
+                                        }}
+                                        viewport={{ once: true }}
+                                        whileHover={{
+                                            y: -6,
+                                            scale: 1.02,
+                                        }}
                                         className="
-                                            rounded-2xl
-                                            border border-white/10
-                                            bg-black/30
-                                            p-5
-                                        "
+                        group
+                        relative
+                        overflow-hidden
+                        rounded-2xl
+                        border border-white/10
+                        bg-black/30
+                        backdrop-blur-xl
+                        p-5
+                        transition-all
+                        duration-500
+                        hover:border-primary/30
+                    "
                                     >
-                                        <p className="text-2xl md:text-3xl font-bold text-primary">
-                                            {value}
-                                        </p>
 
-                                        <p className="text-zinc-500 text-sm mt-2">
-                                            {label}
-                                        </p>
+                                        {/* Glow */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+                                        {/* Top glow */}
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[120px] bg-primary/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+                                        <div className="relative z-10">
+
+                                            <p className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-primary via-emerald-300 to-primary bg-clip-text text-transparent">
+                                                <CountUp
+                                                    value={item.value}
+                                                    suffix={item.suffix}
+                                                />
+                                            </p>
+
+                                            <p className="text-zinc-500 text-sm mt-2">
+                                                {item.label}
+                                            </p>
+
+                                        </div>
+
                                     </motion.div>
 
                                 ))}
