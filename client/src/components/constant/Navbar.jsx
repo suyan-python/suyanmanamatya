@@ -135,44 +135,151 @@ const Navbar = () =>
             </div>
 
             {/* ===================== MOBILE MENU (FIXED PREMIUM UI) ===================== */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {open && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        initial={{
+                            opacity: 0,
+                            y: -30,
+                            scaleY: 0.75,
+                            filter: "blur(10px)",
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                            scaleY: 1,
+                            filter: "blur(0px)",
+                        }}
+                        exit={{
+                            opacity: 0,
+                            y: -20,
+                            scaleY: 0.8,
+                            filter: "blur(8px)",
+                        }}
                         transition={{
-                            duration: 0.25,
+                            duration: 0.45,
                             ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="md:hidden absolute top-20 left-1/2 -translate-x-1/2 w-[92vw]"
+                        style={{
+                            transformOrigin: "top center",
+                        }}
+                        className="
+                md:hidden
+                absolute
+                top-20
+                left-1/2
+                -translate-x-1/2
+                w-[92vw]
+                z-50
+            "
                     >
 
-                        <div className="bg-black/70 border border-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl">
+                        {/* LIQUID GLOW */}
+                        <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-[30px]" />
 
-                            <div className="flex flex-col gap-3">
+                        {/* MAIN PANEL */}
+                        <div
+                            className="
+                    relative
+                    overflow-hidden
+                    bg-black/70
+                    border border-white/10
+                    backdrop-blur-3xl
+                    rounded-[30px]
+                    p-5
+                    shadow-[0_10px_60px_rgba(0,0,0,0.5)]
+                "
+                        >
 
-                                {navLinks.map((item) => (
-                                    <a
+                            {/* TOP LIGHT */}
+                            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
+                            {/* NAV ITEMS */}
+                            <div className="flex flex-col gap-2">
+
+                                {navLinks.map((item, index) => (
+                                    <motion.a
                                         key={item}
                                         href={`#${item}`}
                                         onClick={() => setOpen(false)}
-                                        className={`px-4 py-3 rounded-xl uppercase tracking-wide text-sm transition
-                            ${active === item
-                                                ? " text-primary"
-                                                : "text-zinc-300 hover:bg-white/5 hover:text-white"
-                                            }`}
+                                        initial={{
+                                            opacity: 0,
+                                            y: -10,
+                                        }}
+                                        animate={{
+                                            opacity: 1,
+                                            y: 0,
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                            y: -10,
+                                        }}
+                                        transition={{
+                                            delay: index * 0.05,
+                                            duration: 0.3,
+                                        }}
+                                        className={`
+                                group
+                                relative
+                                px-5
+                                py-4
+                                rounded-2xl
+                                uppercase
+                                tracking-[2px]
+                                text-sm
+                                overflow-hidden
+                                transition-all
+                                duration-300
+
+                                ${active === item
+                                                ? "text-primary bg-primary/10"
+                                                : "text-zinc-300 hover:text-white"
+                                            }
+                            `}
                                     >
-                                        {item}
-                                    </a>
+
+                                        {/* Hover liquid */}
+                                        <div
+                                            className="
+                                    absolute
+                                    inset-0
+                                    bg-gradient-to-r
+                                    from-primary/10
+                                    to-emerald-400/5
+                                    opacity-0
+                                    group-hover:opacity-100
+                                    transition-all
+                                    duration-500
+                                "
+                                        />
+
+                                        <span className="relative z-10">
+                                            {item}
+                                        </span>
+                                    </motion.a>
                                 ))}
 
                             </div>
 
-                            {/* footer */}
-                            <div className="mt-4 pt-4 border-t border-white/10 text-xs text-zinc-500 text-center">
-                                <img src={logo} alt="Logo" className="w-4 h-4 inline-block mr-1" />
-                                powered by SuyanMan
+                            {/* FOOTER */}
+                            <div
+                                className="
+                        mt-5
+                        pt-4
+                        border-t border-white/10
+                        flex items-center justify-center gap-2
+                        text-xs text-zinc-500
+                    "
+                            >
+                                <img
+                                    src={logo}
+                                    alt="Logo"
+                                    className="w-4 h-4 opacity-80"
+                                />
+
+                                <span className="tracking-wide">
+                                    powered by SuyanMan
+                                </span>
                             </div>
 
                         </div>
